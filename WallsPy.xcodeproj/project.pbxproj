@@ -13,6 +13,12 @@
 		33B41A2A2B9C8C9F0007C709 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 33B41A282B9C8C9F0007C709 /* Main.storyboard */; };
 		33B41A2C2B9C8CA20007C709 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 33B41A2B2B9C8CA20007C709 /* Assets.xcassets */; };
 		33B41A2F2B9C8CA20007C709 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 33B41A2D2B9C8CA20007C709 /* LaunchScreen.storyboard */; };
+		33B41A392B9DC8FF0007C709 /* ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B41A382B9DC8FF0007C709 /* ImageView.swift */; };
+		33B41A3B2B9DCA1A0007C709 /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B41A3A2B9DCA1A0007C709 /* Label.swift */; };
+		33B41A422B9DFB280007C709 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B41A412B9DFB280007C709 /* CollectionViewCell.swift */; };
+		33B41A462B9E04910007C709 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B41A452B9E04910007C709 /* Button.swift */; };
+		33B41A6B2B9F565E0007C709 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B41A6A2B9F565E0007C709 /* Data.swift */; };
+		33B41A6D2BA1B8990007C709 /* LaunchScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B41A6C2BA1B8990007C709 /* LaunchScreenViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +30,12 @@
 		33B41A2B2B9C8CA20007C709 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		33B41A2E2B9C8CA20007C709 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		33B41A302B9C8CA20007C709 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		33B41A382B9DC8FF0007C709 /* ImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageView.swift; sourceTree = "<group>"; };
+		33B41A3A2B9DCA1A0007C709 /* Label.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Label.swift; sourceTree = "<group>"; };
+		33B41A412B9DFB280007C709 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
+		33B41A452B9E04910007C709 /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
+		33B41A6A2B9F565E0007C709 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
+		33B41A6C2BA1B8990007C709 /* LaunchScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +68,77 @@
 		33B41A212B9C8C9F0007C709 /* WallsPy */ = {
 			isa = PBXGroup;
 			children = (
-				33B41A222B9C8C9F0007C709 /* AppDelegate.swift */,
-				33B41A242B9C8C9F0007C709 /* SceneDelegate.swift */,
-				33B41A262B9C8C9F0007C709 /* ViewController.swift */,
-				33B41A282B9C8C9F0007C709 /* Main.storyboard */,
-				33B41A2B2B9C8CA20007C709 /* Assets.xcassets */,
-				33B41A2D2B9C8CA20007C709 /* LaunchScreen.storyboard */,
+				33B41A362B9DC8D60007C709 /* Components */,
+				33B41A402B9DFAFB0007C709 /* Cell */,
+				33B41A3D2B9DCA550007C709 /* Controller */,
+				33B41A3E2B9DCA640007C709 /* App */,
+				33B41A692B9F56500007C709 /* Model */,
+				33B41A3F2B9DCA7A0007C709 /* Store */,
 				33B41A302B9C8CA20007C709 /* Info.plist */,
 			);
 			path = WallsPy;
+			sourceTree = "<group>";
+		};
+		33B41A362B9DC8D60007C709 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				33B41A372B9DC8F10007C709 /* UIkit */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		33B41A372B9DC8F10007C709 /* UIkit */ = {
+			isa = PBXGroup;
+			children = (
+				33B41A382B9DC8FF0007C709 /* ImageView.swift */,
+				33B41A3A2B9DCA1A0007C709 /* Label.swift */,
+				33B41A452B9E04910007C709 /* Button.swift */,
+			);
+			path = UIkit;
+			sourceTree = "<group>";
+		};
+		33B41A3D2B9DCA550007C709 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				33B41A262B9C8C9F0007C709 /* ViewController.swift */,
+				33B41A6C2BA1B8990007C709 /* LaunchScreenViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		33B41A3E2B9DCA640007C709 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				33B41A222B9C8C9F0007C709 /* AppDelegate.swift */,
+				33B41A242B9C8C9F0007C709 /* SceneDelegate.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		33B41A3F2B9DCA7A0007C709 /* Store */ = {
+			isa = PBXGroup;
+			children = (
+				33B41A282B9C8C9F0007C709 /* Main.storyboard */,
+				33B41A2B2B9C8CA20007C709 /* Assets.xcassets */,
+				33B41A2D2B9C8CA20007C709 /* LaunchScreen.storyboard */,
+			);
+			path = Store;
+			sourceTree = "<group>";
+		};
+		33B41A402B9DFAFB0007C709 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				33B41A412B9DFB280007C709 /* CollectionViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		33B41A692B9F56500007C709 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				33B41A6A2B9F565E0007C709 /* Data.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,8 +212,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				33B41A462B9E04910007C709 /* Button.swift in Sources */,
 				33B41A272B9C8C9F0007C709 /* ViewController.swift in Sources */,
+				33B41A392B9DC8FF0007C709 /* ImageView.swift in Sources */,
+				33B41A422B9DFB280007C709 /* CollectionViewCell.swift in Sources */,
 				33B41A232B9C8C9F0007C709 /* AppDelegate.swift in Sources */,
+				33B41A6B2B9F565E0007C709 /* Data.swift in Sources */,
+				33B41A3B2B9DCA1A0007C709 /* Label.swift in Sources */,
+				33B41A6D2BA1B8990007C709 /* LaunchScreenViewController.swift in Sources */,
 				33B41A252B9C8C9F0007C709 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

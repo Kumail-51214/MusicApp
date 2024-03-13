@@ -10,11 +10,32 @@ import UIKit
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
-
+    var window:UIWindow?
+    let launchScreenDuration:TimeInterval = 100.0
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        // Override point for customization after application launch
+        
+        
+        let launchScreenController = LaunchScreenViewController()
+        
+        window = UIWindow(frame: UIScreen.main.bounds)
+        window?.rootViewController = launchScreenController
+        window?.makeKeyAndVisible()
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + launchScreenDuration){
+            self.showMainViewController()
+        }
+        
         return true
+    }
+    
+    func showMainViewController() {
+        let mainViewController = ViewController()
+        
+        if let appdelegate = UIApplication.shared.delegate as? AppDelegate {
+            appdelegate.window?.rootViewController = mainViewController
+        }
     }
 
     // MARK: UISceneSession Lifecycle
