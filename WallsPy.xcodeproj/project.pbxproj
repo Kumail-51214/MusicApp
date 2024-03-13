@@ -18,7 +18,7 @@
 		33B41A422B9DFB280007C709 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B41A412B9DFB280007C709 /* CollectionViewCell.swift */; };
 		33B41A462B9E04910007C709 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B41A452B9E04910007C709 /* Button.swift */; };
 		33B41A6B2B9F565E0007C709 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B41A6A2B9F565E0007C709 /* Data.swift */; };
-		33B41A6D2BA1B8990007C709 /* LaunchScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B41A6C2BA1B8990007C709 /* LaunchScreenViewController.swift */; };
+		33B41A6F2BA21F7E0007C709 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B41A6E2BA21F7E0007C709 /* View.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,7 +35,7 @@
 		33B41A412B9DFB280007C709 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		33B41A452B9E04910007C709 /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
 		33B41A6A2B9F565E0007C709 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
-		33B41A6C2BA1B8990007C709 /* LaunchScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenViewController.swift; sourceTree = "<group>"; };
+		33B41A6E2BA21F7E0007C709 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +93,7 @@
 				33B41A382B9DC8FF0007C709 /* ImageView.swift */,
 				33B41A3A2B9DCA1A0007C709 /* Label.swift */,
 				33B41A452B9E04910007C709 /* Button.swift */,
+				33B41A6E2BA21F7E0007C709 /* View.swift */,
 			);
 			path = UIkit;
 			sourceTree = "<group>";
@@ -101,7 +102,6 @@
 			isa = PBXGroup;
 			children = (
 				33B41A262B9C8C9F0007C709 /* ViewController.swift */,
-				33B41A6C2BA1B8990007C709 /* LaunchScreenViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -214,12 +214,12 @@
 			files = (
 				33B41A462B9E04910007C709 /* Button.swift in Sources */,
 				33B41A272B9C8C9F0007C709 /* ViewController.swift in Sources */,
+				33B41A6F2BA21F7E0007C709 /* View.swift in Sources */,
 				33B41A392B9DC8FF0007C709 /* ImageView.swift in Sources */,
 				33B41A422B9DFB280007C709 /* CollectionViewCell.swift in Sources */,
 				33B41A232B9C8C9F0007C709 /* AppDelegate.swift in Sources */,
 				33B41A6B2B9F565E0007C709 /* Data.swift in Sources */,
 				33B41A3B2B9DCA1A0007C709 /* Label.swift in Sources */,
-				33B41A6D2BA1B8990007C709 /* LaunchScreenViewController.swift in Sources */,
 				33B41A252B9C8C9F0007C709 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

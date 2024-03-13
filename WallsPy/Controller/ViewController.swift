@@ -17,13 +17,7 @@ class ViewController: UIViewController {
         pc.layer.speed = 0.3
         return pc
     }()
-    
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-            return .lightContent // Change status bar style to white
-        }
-    
-    
-    
+
     let collectionView:UICollectionView = {
        let view = UICollectionViewFlowLayout()
         view.scrollDirection = .horizontal
@@ -40,14 +34,17 @@ class ViewController: UIViewController {
     
     let nextButton = Button(backgroundColor:UIColor(red: 33/255, green: 40/255, blue: 63/255, alpha: 1), cornerRadius: 25,title: "Next")
     
-    let loginLabel = Label(text: "Login with Apple", font: .systemFont(ofSize: 17, weight: .medium), textColor: .white)
-    let appleImage = ImageView(image: "apple.logo")
+    let labelAndImageView = View(text: "Login with Apple", image: "apple.logo")
     
     var currentPageIndex = 0 {
         didSet {
             pageControl.currentPage = currentPageIndex
         }
     }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+            return .lightContent // Change status bar style to white
+        }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,7 +53,6 @@ class ViewController: UIViewController {
         registerCell()
         setDelegatesAndDataSource()
         setupViews()
-        
         
     }
     
@@ -77,8 +73,7 @@ class ViewController: UIViewController {
         view.addSubview(collectionView)
         view.addSubview(nextButton)
         view.addSubview(pageControl)
-        view.addSubview(loginLabel)
-        loginLabel.addSubview(appleImage)
+        view.addSubview(labelAndImageView)
         
         NSLayoutConstraint.activate([
         
@@ -94,15 +89,11 @@ class ViewController: UIViewController {
             nextButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             nextButton.widthAnchor.constraint(equalToConstant: 311),
             nextButton.heightAnchor.constraint(equalToConstant: 50),
-            
-            loginLabel.topAnchor.constraint(equalTo: nextButton.bottomAnchor, constant: 30),
-            loginLabel.widthAnchor.constraint(equalToConstant: 311),
-            loginLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            
-            appleImage.topAnchor.constraint(equalTo: loginLabel.topAnchor),
-            appleImage.leadingAnchor.constraint(equalTo: loginLabel.leadingAnchor , constant: 60),
-            appleImage.widthAnchor.constraint(equalToConstant: 22),
-            appleImage.heightAnchor.constraint(equalToConstant: 22)
+    
+            labelAndImageView.topAnchor.constraint(equalTo: nextButton.bottomAnchor, constant: 20),
+            labelAndImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            labelAndImageView.widthAnchor.constraint(equalToConstant: 311),
+            labelAndImageView.heightAnchor.constraint(equalToConstant: 50)
             
         ])
         nextButton.setTitleColor(.white, for: .normal)
@@ -110,14 +101,13 @@ class ViewController: UIViewController {
         
         pageControl.numberOfPages = onBoardingSlideArray.count
         pageControl.currentPage = 0
-        
+        //page control properties
         pageControl.pageIndicatorTintColor = UIColor(red: 33/255, green: 40/255, blue: 63/255, alpha: 1)
         pageControl.currentPageIndicatorTintColor = UIColor(red: 72/255, green: 112/255, blue: 255/255, alpha: 1)
         
-        loginLabel.textAlignment = .center
-        loginLabel.isUserInteractionEnabled = true
-        loginLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(loginPage)))
-        
+        labelAndImageView.isUserInteractionEnabled = true
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(loginPage))
+        labelAndImageView.addGestureRecognizer(tapGesture)
     }
     
     func updateButtonTitle() {
@@ -142,13 +132,13 @@ class ViewController: UIViewController {
             currentPageIndex = nextPageIndex
         }
         else {
-            print("errrr")
+            print("Next Controller")
         }
         updateButtonTitle()
     }
     
     @objc func loginPage() {
-        print("errr")
+        print("Login with Apple")
     }
 }
 
