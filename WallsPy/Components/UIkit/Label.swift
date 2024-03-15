@@ -9,10 +9,11 @@ import UIKit
 
 class Label: UILabel {
 
-    required init(text:String, font:UIFont, textColor:UIColor) {
+    required init(text:String, font:UIFont, textColor:UIColor, textAlignment: NSTextAlignment = .left) {
         super.init(frame: .zero)
         self.translatesAutoresizingMaskIntoConstraints = false
         self.text = text
+        self.textAlignment = textAlignment
         self.font = font
         self.textColor = textColor
         self.numberOfLines = 0

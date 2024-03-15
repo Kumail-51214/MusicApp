@@ -7,99 +7,101 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+//MVC Model View Controller
+
+class OnboardingViewController: UIViewController {
     
-    let pageControl: UIPageControl = {
-       let pc = UIPageControl()
+    private let pageControl: UIPageControl = {
+        let pc = UIPageControl()
         pc.translatesAutoresizingMaskIntoConstraints = false
         pc.currentPage = 0
         pc.isUserInteractionEnabled = false
         pc.layer.speed = 0.3
         return pc
     }()
-
-    let collectionView:UICollectionView = {
-       let view = UICollectionViewFlowLayout()
+    private let collectionView:UICollectionView = {
+        let view = UICollectionViewFlowLayout()
         view.scrollDirection = .horizontal
         let cv = UICollectionView(frame: .zero, collectionViewLayout: view)
         cv.translatesAutoresizingMaskIntoConstraints = false
         cv.backgroundColor = .clear
         cv.showsHorizontalScrollIndicator = false
         cv.isPagingEnabled = true
-        cv.isUserInteractionEnabled = false
+        cv.isUserInteractionEnabled = true
+        cv.isPagingEnabled = true
         return cv
     }()
-
-    let onBoardingSlideArray:[slideData] = [slideData(image: "FirstImage", headingtext: "Exclusive Sounds", detailtext: "We have an author's library of sound that \n you will not find else where"), slideData(image: "SecondImage", headingtext: "Relax sleep sounds", detailtext: "Our sound will help to relax and improve \n your sleep health"), slideData(image: "ThirdImage", headingtext: "Story for kids", detailtext: "Famous fairy tales with soothing sound will \n help your children fall asleep faster")]
+    private let featrureArray: [OnboardingData] = OnboardingData.allCases
     
-    let nextButton = Button(backgroundColor:UIColor(red: 33/255, green: 40/255, blue: 63/255, alpha: 1), cornerRadius: 25,title: "Next")
+    //Color save into one place
+    private let nextButton = Button(backgroundColor: .appBackgroundColor, cornerRadius: 25,title: "Next")
     
-    let labelAndImageView = View(text: "Login with Apple", image: "apple.logo")
+    private let labelAndImageView = ImageViewWithLabel(text: "Login with Apple", image: "apple.logo")
     
-    var currentPageIndex = 0 {
+    private var currentPageIndex = 0 {
         didSet {
             pageControl.currentPage = currentPageIndex
         }
     }
     
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-            return .lightContent // Change status bar style to white
-        }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         backgroundColor()
         registerCell()
         setDelegatesAndDataSource()
         setupViews()
-        
+        confiureUI()
     }
     
-    func backgroundColor() {
+    private func backgroundColor() {
         view.backgroundColor = UIColor(red: 20/255.0 , green: 25/255.0, blue: 39/255.0, alpha: 1.00)
     }
-
-    func registerCell() {
+    
+    private func registerCell() {
         collectionView.register(CollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
     }
     
-    func setDelegatesAndDataSource() {
+    private func setDelegatesAndDataSource() {
         collectionView.delegate = self
         collectionView.dataSource = self
     }
     
-    func setupViews() {
+    private func setupViews() {
         view.addSubview(collectionView)
         view.addSubview(nextButton)
         view.addSubview(pageControl)
         view.addSubview(labelAndImageView)
         
         NSLayoutConstraint.activate([
-        
-            collectionView.topAnchor.constraint(equalTo: view.topAnchor),
+            
+            collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -300),
+            collectionView.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.height - 400.autoSize),
             
             pageControl.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            pageControl.topAnchor.constraint(equalTo: collectionView.bottomAnchor, constant: 20),
+            pageControl.bottomAnchor.constraint(equalTo: nextButton.topAnchor, constant: -30.autoSize),
             
-            nextButton.topAnchor.constraint(equalTo: pageControl.bottomAnchor, constant: 30),
+            nextButton.bottomAnchor.constraint(equalTo: labelAndImageView.topAnchor, constant: -20.autoSize),
             nextButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            nextButton.widthAnchor.constraint(equalToConstant: 311),
-            nextButton.heightAnchor.constraint(equalToConstant: 50),
-    
-            labelAndImageView.topAnchor.constraint(equalTo: nextButton.bottomAnchor, constant: 20),
+            nextButton.widthAnchor.constraint(equalToConstant: 311.autoSize),
+            nextButton.heightAnchor.constraint(equalToConstant: 50.autoSize),
+            
+            labelAndImageView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -40.autoSize),
             labelAndImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            labelAndImageView.widthAnchor.constraint(equalToConstant: 311),
-            labelAndImageView.heightAnchor.constraint(equalToConstant: 50)
+            labelAndImageView.widthAnchor.constraint(equalToConstant: 311.autoSize),
+            labelAndImageView.heightAnchor.constraint(equalToConstant: 50.autoSize)
             
         ])
+    }
+    
+    private func confiureUI() {
         nextButton.setTitleColor(.white, for: .normal)
         nextButton.addTarget(self, action: #selector(scrollToNextPage), for: .touchUpInside)
         
-        pageControl.numberOfPages = onBoardingSlideArray.count
+        pageControl.numberOfPages = featrureArray.count
         pageControl.currentPage = 0
         //page control properties
         pageControl.pageIndicatorTintColor = UIColor(red: 33/255, green: 40/255, blue: 63/255, alpha: 1)
@@ -110,49 +112,51 @@ class ViewController: UIViewController {
         labelAndImageView.addGestureRecognizer(tapGesture)
     }
     
-    func updateButtonTitle() {
+    
+    @objc private func scrollToNextPage() {
         
-        if currentPageIndex == pageControl.numberOfPages - 1 {
-            nextButton.setTitle("Start", for: .normal)
+        let indexPath = IndexPath(item: currentPageIndex + 1, section: 0)
+        collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+    }
+    
+    @objc private func loginPage() {
+        print("Login with Apple")
+    }
+    
 
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        
+        for cell in collectionView.visibleCells {
+            let indexPath = collectionView.indexPath(for: cell)
+            if let index = indexPath?.row {
+                currentPageIndex = index
+                print(currentPageIndex)
+                setButtonText()
+            }
         }
-        else{
+    }
+    
+    private func setButtonText() {
+        if currentPageIndex == (featrureArray.count - 1) {
+            nextButton.setTitle("Start", for: .normal)
+        } else {
             nextButton.setTitle("Next", for: .normal)
         }
     }
     
-    @objc func scrollToNextPage() {
-        let nextPageIndex = currentPageIndex + 1
-        let screenWidth = collectionView.frame.width
-        let contentOffSetX = CGFloat(nextPageIndex) * screenWidth
-        
-        if nextPageIndex < onBoardingSlideArray.count {
-            
-            collectionView.setContentOffset(CGPoint(x: contentOffSetX, y: 0), animated: true)
-            currentPageIndex = nextPageIndex
-        }
-        else {
-            print("Next Controller")
-        }
-        updateButtonTitle()
-    }
     
-    @objc func loginPage() {
-        print("Login with Apple")
-    }
+    
 }
 
 
-extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
+extension OnboardingViewController: UICollectionViewDelegate, UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return onBoardingSlideArray.count
+        return featrureArray.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath)as! CollectionViewCell
-        cell.onboardingImage.image = UIImage(named: "\(onBoardingSlideArray[indexPath.row].image)")
-        cell.heading.text = onBoardingSlideArray[indexPath.row].headingtext
-        cell.descriptionText.text = onBoardingSlideArray[indexPath.row].detailtext
+        cell.configureUI(object: featrureArray[indexPath.row])
         return cell
     }
     
@@ -160,7 +164,7 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource,U
         let width = collectionView.bounds.width - 10
         let height = collectionView.bounds.height
         return CGSize(width: width , height: height)
-
+        
     }
 }
 

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class View: UIView {
+class ImageViewWithLabel: UIView {
 
     let nameLabel = Label(text: "Dummy", font: .systemFont(ofSize: 17, weight: .medium), textColor: .white)
     let imageView = ImageView(image: "ThirdImage")
@@ -33,13 +33,27 @@ class View: UIView {
         NSLayoutConstraint.activate([
         
             nameLabel.topAnchor.constraint(equalTo: topAnchor, constant: 10),
-            nameLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
+            nameLabel.centerXAnchor.constraint(equalTo: centerXAnchor, constant: 16),
             
-            imageView.topAnchor.constraint(equalTo: nameLabel.topAnchor),
+            imageView.centerYAnchor.constraint(equalTo: nameLabel.centerYAnchor),
             imageView.trailingAnchor.constraint(equalTo: nameLabel.leadingAnchor, constant: -10),
             imageView.widthAnchor.constraint(equalToConstant: 22),
             imageView.heightAnchor.constraint(equalToConstant: 22)
         ])
         nameLabel.textAlignment = .center
     }
+}
+
+class View: UIView {
+
+    required init(backgroundColor: UIColor) {
+        super.init(frame: .zero)
+        self.translatesAutoresizingMaskIntoConstraints = false
+        self.backgroundColor = backgroundColor
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
 }
